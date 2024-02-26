@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="560.0" prefWidth="701.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.AfficherStockControllers">
+   <children>
+      <Label alignment="CENTER" layoutX="411.0" layoutY="230.0" prefHeight="45.0" prefWidth="147.0" text="Affichage :">
+         <font>
+            <Font name="System Italic" size="20.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="353.0" layoutY="150.0" prefHeight="80.0" prefWidth="264.0" text="Gestion Stock :">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Label>
+      <VBox layoutX="234.0" layoutY="288.0" prefHeight="270.0" prefWidth="501.0">
+         <children>
+            <HBox prefHeight="49.0" prefWidth="497.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="49.0" prefWidth="116.0" text="Code Produit : ">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" prefHeight="49.0" prefWidth="120.0" text="Quantité :">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" prefHeight="52.0" prefWidth="130.0" text="Prix Unitaire :">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" prefHeight="53.0" prefWidth="139.0" text="Date Restock :">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <ListView fx:id="STOCK_AFF" prefHeight="222.0" prefWidth="499.0" />
+         </children>
+      </VBox>
+      <Button layoutX="748.0" layoutY="368.0" mnemonicParsing="false" onAction="#STOCK_AFF_BOUTON_AJ" prefHeight="55.0" prefWidth="158.0" text="--&gt; AJOUTER">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+      <Button layoutX="748.0" layoutY="440.0" mnemonicParsing="false" onAction="#STOCK_AFF_BOUTON_MO" prefHeight="55.0" prefWidth="158.0" text="--&gt; MODIFIER">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+      <TextField fx:id="STOCK_RECH1" layoutX="758.0" layoutY="237.0" prefHeight="31.0" prefWidth="138.0" />
+      <Button layoutX="727.0" layoutY="163.0" mnemonicParsing="false" onAction="#STOCK_RECH_BOUTON" prefHeight="55.0" prefWidth="179.0" text="--&gt; RECHERCHER">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="31.0" fitWidth="40.0" layoutX="672.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@icons/notification.png" />
+         </image>
+      </ImageView>
+      <ComboBox id="Button" layoutX="723.0" layoutY="20.0" prefHeight="63.0" prefWidth="176.0" promptText="Welcome" stylesheets="@style.css" />
+      <ImageView fitHeight="31.0" fitWidth="700.0" layoutX="220.0" layoutY="80.0" pickOnBounds="true">
+         <image>
+            <Image url="@icons/minus.png" />
+         </image>
+      </ImageView>
+      <TextField id="SearchBar" layoutX="220.0" layoutY="25.0" prefHeight="42.0" prefWidth="427.0" promptText="Search" stylesheets="@style.css" />
+      <Pane id="Pane" layoutX="10.0" layoutY="10.0" prefHeight="650.0" prefWidth="203.0" style="-fx-background-color: #ffffff;" stylesheets="@style.css">
+         <children>
+            <ImageView fitHeight="50.0" fitWidth="186.0" layoutX="8.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/2%20(1).png" />
+               </image>
+            </ImageView>
+            <Button id="Button" fx:id="myButton" alignment="CENTER" layoutX="12.0" layoutY="90.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="176.0" stylesheets="@style.css" text=" Dashboard">
+               <font>
+                  <Font name="Arial Bold" size="16.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@icons/house.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button id="Button" layoutX="13.0" layoutY="205.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="176.0" stylesheets="@style.css" text=" Produits">
+               <font>
+                  <Font name="Arial Bold" size="16.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="27.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@icons/brand-identity.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button id="Button" layoutX="12.0" layoutY="266.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="176.0" stylesheets="@style.css" text=" Entrepots">
+               <font>
+                  <Font name="Arial Bold" size="16.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="27.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@icons/warehouse.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button id="Button" layoutX="12.0" layoutY="325.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="176.0" stylesheets="@style.css" text=" Commandes">
+               <font>
+                  <Font name="Arial Bold" size="16.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@icons/package.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button id="Button" layoutX="12.0" layoutY="387.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="176.0" stylesheets="@style.css" text=" Evenements">
+               <font>
+                  <Font name="Arial Bold" size="16.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="27.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@icons/event.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button id="Button" layoutX="12.0" layoutY="450.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="176.0" stylesheets="@style.css" text=" Livrasions">
+               <font>
+                  <Font name="Arial Bold" size="16.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@icons/product.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button id="Button" layoutX="12.0" layoutY="536.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="176.0" stylesheets="@style.css" text=" Paramètres">
+               <font>
+                  <Font name="Arial Bold" size="16.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@icons/settings.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button id="Button" layoutX="14.0" layoutY="591.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="176.0" stylesheets="@style.css" text=" Se déconnecter">
+               <font>
+                  <Font name="Arial Bold" size="16.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="22.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@icons/logout.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button id="Button" alignment="CENTER" layoutX="12.0" layoutY="144.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="176.0" stylesheets="@style.css" text=" Utilisateurs">
+               <font>
+                  <Font name="Arial Bold" size="16.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@icons/user.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
