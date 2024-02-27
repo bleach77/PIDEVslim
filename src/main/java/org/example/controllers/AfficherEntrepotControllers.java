@@ -70,13 +70,13 @@ public class AfficherEntrepotControllers {
                             if (entrepot == null || empty) {
                                 setText(null);
                             } else {
-                                setText("   "+
+                                setText("        "+
                                         entrepot.getNomE() +
-                                        "      " +
+                                        "                              " +
                                         entrepot.getAdresseE()+
-                                        "        " +
+                                        "                                  " +
                                         entrepot.getCapaciteE() +
-                                        "          " +
+                                        "                           " +
                                         entrepot.getStatutE().toString());
                             }
                         }
@@ -99,7 +99,7 @@ public class AfficherEntrepotControllers {
                     Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                     alert.setTitle("Confirmation de suppression");
                     alert.setHeaderText("Êtes-vous sûr de vouloir supprimer cet élément ?");
-                    alert.setContentText("Nom: " + selectedEntrepot.getNomE());
+                    alert.setContentText("Nom : " + selectedEntrepot.getNomE());
                     alert.showAndWait().ifPresent(response -> {
                         if (response == ButtonType.OK) {
                             // Si l'utilisateur a cliqué sur OK, supprimer l'élément

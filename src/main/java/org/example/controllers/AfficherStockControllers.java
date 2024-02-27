@@ -98,13 +98,13 @@ public class AfficherStockControllers {
                             if (stock == null || empty) {
                                 setText(null);
                             } else {
-                                setText("   "+
+                                setText("            "+
                                         stock.getCodeProduitS() +
-                                        "      " +
+                                        "                                 "  +
                                                 stock.getQuantiteS() +
-                                                "        " +
+                                        "                                " +
                                                 stock.getPrixUnitaireS() +
-                                        "          " +
+                                        "                            " +
                                                 stock.getdateRestockS());
                             }
                         }
