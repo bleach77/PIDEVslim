@@ -49,18 +49,18 @@
             <ListView fx:id="STOCK_AFF" prefHeight="222.0" prefWidth="499.0" />
          </children>
       </VBox>
-      <Button layoutX="748.0" layoutY="368.0" mnemonicParsing="false" onAction="#STOCK_AFF_BOUTON_AJ" prefHeight="55.0" prefWidth="158.0" text="--&gt; AJOUTER">
+      <Button id="Button" layoutX="748.0" layoutY="368.0" mnemonicParsing="false" onAction="#STOCK_AFF_BOUTON_AJ" prefHeight="55.0" prefWidth="158.0" stylesheets="@css/style.css" text="--&gt; AJOUTER">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
-      <Button layoutX="748.0" layoutY="440.0" mnemonicParsing="false" onAction="#STOCK_AFF_BOUTON_MO" prefHeight="55.0" prefWidth="158.0" text="--&gt; MODIFIER">
+      <Button id="Button" layoutX="748.0" layoutY="440.0" mnemonicParsing="false" onAction="#STOCK_AFF_BOUTON_MO" prefHeight="55.0" prefWidth="158.0" stylesheets="@css/style.css" text="--&gt; MODIFIER">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
       <TextField fx:id="STOCK_RECH1" layoutX="758.0" layoutY="237.0" prefHeight="31.0" prefWidth="138.0" />
-      <Button layoutX="727.0" layoutY="163.0" mnemonicParsing="false" onAction="#STOCK_RECH_BOUTON" prefHeight="55.0" prefWidth="179.0" text="--&gt; RECHERCHER">
+      <Button id="Button" layoutX="727.0" layoutY="163.0" mnemonicParsing="false" onAction="#STOCK_RECH_BOUTON" prefHeight="55.0" prefWidth="179.0" stylesheets="@css/style.css" text="--&gt; RECHERCHER">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>

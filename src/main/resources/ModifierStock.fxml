@@ -10,13 +10,13 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="653.0" prefWidth="912.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.ModifierStockControllers">
    <children>
-      <Button layoutX="680.0" layoutY="321.0" mnemonicParsing="false" onAction="#STOCK_MO_BOUTON_AFF" prefHeight="55.0" prefWidth="158.0" text="--&gt; AFFICHAGE">
+      <Button id="Button" layoutX="680.0" layoutY="321.0" mnemonicParsing="false" onAction="#STOCK_MO_BOUTON_AFF" prefHeight="55.0" prefWidth="158.0" stylesheets="@css/style.css" text="--&gt; AFFICHAGE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
       <Label fx:id="STOCK_MO_REP1" cache="true" layoutX="472.0" layoutY="439.0" prefHeight="31.0" prefWidth="134.0" />
-      <Button layoutX="353.0" layoutY="427.0" mnemonicParsing="false" onAction="#STOCK_MO_BOUTON1" prefHeight="55.0" prefWidth="113.0" text="MODIFIER">
+      <Button id="Button" layoutX="353.0" layoutY="427.0" mnemonicParsing="false" onAction="#STOCK_MO_BOUTON1" prefHeight="55.0" prefWidth="113.0" stylesheets="@css/style.css" text="MODIFIER">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>

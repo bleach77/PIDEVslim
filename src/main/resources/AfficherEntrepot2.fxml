@@ -49,17 +49,17 @@
                 <ListView fx:id="ENTREPOT_AFF" prefHeight="222.0" prefWidth="499.0" />
             </children>
         </VBox>
-        <Button layoutX="753.0" layoutY="359.0" mnemonicParsing="false" onAction="#ENTREPOT_AFF_BOUTON_AJ" prefHeight="55.0" prefWidth="158.0" text="--&gt; AJOUTER">
+        <Button id="Button" layoutX="753.0" layoutY="359.0" mnemonicParsing="false" onAction="#ENTREPOT_AFF_BOUTON_AJ" prefHeight="55.0" prefWidth="158.0" stylesheets="@css/style.css" text="--&gt; AJOUTER">
             <font>
                 <Font name="System Bold" size="18.0" />
             </font>
         </Button>
-        <Button layoutX="753.0" layoutY="431.0" mnemonicParsing="false" onAction="#ENTREPOT_AFF_BOUTON_MO" prefHeight="55.0" prefWidth="158.0" text="--&gt; MODIFIER">
+        <Button id="Button" layoutX="753.0" layoutY="431.0" mnemonicParsing="false" onAction="#ENTREPOT_AFF_BOUTON_MO" prefHeight="55.0" prefWidth="158.0" stylesheets="@css/style.css" text="--&gt; MODIFIER">
             <font>
                 <Font name="System Bold" size="18.0" />
             </font>
         </Button>
-      <Button layoutX="730.0" layoutY="192.0" mnemonicParsing="false" onAction="#ENTREPOT_RECH_BOUTON" prefHeight="55.0" prefWidth="179.0" text="--&gt; RECHERCHER">
+      <Button id="Button" layoutX="730.0" layoutY="192.0" mnemonicParsing="false" onAction="#ENTREPOT_RECH_BOUTON" prefHeight="55.0" prefWidth="179.0" stylesheets="@css/style.css" text="--&gt; RECHERCHER">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
