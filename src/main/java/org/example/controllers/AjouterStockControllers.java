@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.example.entites.Stock;
+import org.example.services.Sendmail;
 import org.example.services.StockService;
 import org.w3c.dom.Text;
 
@@ -68,6 +69,9 @@ public class AjouterStockControllers {
 
                 ss.ajouter(new Stock( Integer.parseInt(STOCK_AJ_CP1.getText()), Integer.parseInt(STOCK_AJ_Q1.getText()) , Float.parseFloat(STOCK_AJ_PU1.getText())));
                 STOCK_AJ_REP1.setText("Hamdoula !");
+                Sendmail sender = new Sendmail();
+                sender.envoyer("slim-fady.hanafi@esprit.tn","Confirmation","Confirmation");
+
             } catch (SQLException e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error");

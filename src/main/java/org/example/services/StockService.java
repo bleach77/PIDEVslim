@@ -1,11 +1,19 @@
 package org.example.services;
 
+import com.google.protobuf.Message;
+import com.mysql.cj.Session;
 import org.example.entites.Stock;
 import org.example.utils.MyDatabase;
 
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 import java.util.stream.Collectors;
 
 public class StockService implements IService<Stock> {
@@ -76,6 +84,8 @@ public class StockService implements IService<Stock> {
         }
         return stocks;
     }
+
+
 
 
 }

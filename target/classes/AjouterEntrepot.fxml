@@ -40,7 +40,7 @@
         <TextField fx:id="ENTREPOT_AJ_N1" alignment="CENTER" layoutX="460.0" layoutY="283.0" promptText="Nom..." />
         <TextField fx:id="ENTREPOT_AJ_AD1" alignment="CENTER" layoutX="460.0" layoutY="328.0" promptText="Adresse..." />
         <TextField fx:id="ENTREPOT_AJ_CA1" alignment="CENTER" layoutX="460.0" layoutY="373.0" promptText="Capacité..." />
-        <Button layoutX="353.0" layoutY="477.0" mnemonicParsing="false" onAction="#ENTREPOT_AJ_BOUTON1" prefHeight="55.0" prefWidth="113.0" text="AJOUTER">
+        <Button id="Button" layoutX="353.0" layoutY="477.0" mnemonicParsing="false" onAction="#ENTREPOT_AJ_BOUTON1" prefHeight="55.0" prefWidth="113.0" stylesheets="@css/style.css" text="AJOUTER">
             <font>
                 <Font name="System Bold" size="18.0" />
             </font>
@@ -58,7 +58,7 @@
                 </FXCollections>
             </items>
         </ComboBox>
-      <Button layoutX="691.0" layoutY="326.0" mnemonicParsing="false" onAction="#ENTREPOT_AJ_BOUTON_AFF" prefHeight="55.0" prefWidth="158.0" text="--&gt; AFFICHAGE">
+      <Button id="Button" layoutX="691.0" layoutY="326.0" mnemonicParsing="false" onAction="#ENTREPOT_AJ_BOUTON_AFF" prefHeight="55.0" prefWidth="158.0" stylesheets="@css/style.css" text="--&gt; AFFICHAGE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>

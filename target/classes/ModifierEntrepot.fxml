@@ -11,13 +11,13 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="662.0" prefWidth="923.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.ModifierEntrepotControllers">
     <children>
-        <Button layoutX="669.0" layoutY="318.0" mnemonicParsing="false" onAction="#ENTREPOT_MO_BOUTON_AFF" prefHeight="55.0" prefWidth="158.0" text="--&gt; AFFICHAGE">
+        <Button id="Button" layoutX="669.0" layoutY="318.0" mnemonicParsing="false" onAction="#ENTREPOT_MO_BOUTON_AFF" prefHeight="55.0" prefWidth="158.0" stylesheets="@css/style.css" text="--&gt; AFFICHAGE">
             <font>
                 <Font name="System Bold" size="18.0" />
             </font>
         </Button>
         <Label fx:id="ENTREPOT_MO_REP1" cache="true" layoutX="462.0" layoutY="479.0" prefHeight="31.0" prefWidth="134.0" />
-        <Button layoutX="342.0" layoutY="467.0" mnemonicParsing="false" onAction="#ENTREPOT_MO_BOUTON1" prefHeight="55.0" prefWidth="113.0" text="MODIFIER">
+        <Button id="Button" layoutX="342.0" layoutY="467.0" mnemonicParsing="false" onAction="#ENTREPOT_MO_BOUTON1" prefHeight="55.0" prefWidth="113.0" stylesheets="@css/style.css" text="MODIFIER">
             <font>
                 <Font name="System Bold" size="18.0" />
             </font>
@@ -50,7 +50,7 @@
                 <Font name="System Bold" size="30.0" />
             </font>
         </Label>
-        <TextField fx:id="ENTREPOT_MO_ID1" layoutX="448.0" layoutY="250.0" />
+        <TextField fx:id="ENTREPOT_MO_ID1" layoutX="448.0" layoutY="250.0" visible="false" />
       <Label alignment="CENTER" layoutX="314.0" layoutY="413.0" prefHeight="45.0" prefWidth="134.0" text="Statue :">
          <font>
             <Font name="System Bold Italic" size="15.0" />

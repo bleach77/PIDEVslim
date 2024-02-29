@@ -50,7 +50,7 @@
                 <Font name="System Bold" size="30.0" />
             </font>
         </Label>
-        <TextField fx:id="ENTREPOT_MO_ID1" layoutX="448.0" layoutY="250.0" />
+        <TextField fx:id="ENTREPOT_MO_ID1" layoutX="448.0" layoutY="250.0" visible="false" />
       <Label alignment="CENTER" layoutX="314.0" layoutY="413.0" prefHeight="45.0" prefWidth="134.0" text="Statue :">
          <font>
             <Font name="System Bold Italic" size="15.0" />

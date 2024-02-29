@@ -4,6 +4,7 @@ import org.example.entites.Entrepot;
 import org.example.entites.Stock;
 import org.example.entites.StatuE;
 import org.example.services.EntrepotService;
+import org.example.services.Sendmail;
 import org.example.services.StockService;
 import org.example.utils.MyDatabase;
 import org.example.entites.StatuE;
@@ -23,6 +24,15 @@ public class Main {
 
 //        System.out.println(MyDataBase.getInstance());
 //        System.out.println(MyDataBase.getInstance());
+        Sendmail sender = new Sendmail();
+
+        // Sample email details
+        String toEmail = "slim-fady.hanafi@esprit.tn";
+        String subject = "Test Email";
+        String body = "This is a test email sent from JavaMail.";
+
+        // Sending the email
+        sender.envoyer(toEmail, subject, body);
 
         EntrepotService es = new EntrepotService();
         StockService ss = new StockService();
@@ -82,5 +92,7 @@ public class Main {
         }
 
  */
+
+
     }
 }

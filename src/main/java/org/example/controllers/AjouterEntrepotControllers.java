@@ -7,6 +7,7 @@ import javafx.scene.control.*;
 import org.example.entites.Entrepot;
 import org.example.entites.StatuE;
 import org.example.services.EntrepotService;
+import org.example.services.Sendmail;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -85,6 +86,9 @@ public class AjouterEntrepotControllers {
             // Utiliser la valeur d'énumération statuE comme nécessaire
             ss.ajouter(new Entrepot(ENTREPOT_AJ_N1.getText(), ENTREPOT_AJ_AD1.getText(), Integer.parseInt(ENTREPOT_AJ_CA1.getText()), statuE));
             ENTREPOT_AJ_REP1.setText("Hamdoula !");
+            Sendmail sender = new Sendmail();
+            sender.envoyer("slim-fady.hanafi@esprit.tn","Confirmation","Confirmation !!!");
+
         } catch (SQLException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erreur");

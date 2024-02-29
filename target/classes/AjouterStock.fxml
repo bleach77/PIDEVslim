@@ -38,13 +38,13 @@
       <TextField fx:id="STOCK_AJ_CP1" alignment="CENTER" layoutX="448.0" layoutY="299.0" promptText="Code Produit..." />
       <TextField fx:id="STOCK_AJ_Q1" alignment="CENTER" layoutX="448.0" layoutY="344.0" promptText="Quantité..." />
       <TextField fx:id="STOCK_AJ_PU1" alignment="CENTER" layoutX="448.0" layoutY="389.0" promptText="Prix Unitaire..." />
-      <Button layoutX="342.0" layoutY="438.0" mnemonicParsing="false" onAction="#STOCK_AJ_BOUTON1" prefHeight="55.0" prefWidth="113.0" text="AJOUTER">
+      <Button id="Button" layoutX="342.0" layoutY="438.0" mnemonicParsing="false" onAction="#STOCK_AJ_BOUTON1" prefHeight="55.0" prefWidth="113.0" stylesheets="@css/style.css" text="AJOUTER">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
       <Label fx:id="STOCK_AJ_REP1" cache="true" layoutX="461.0" layoutY="450.0" prefHeight="31.0" prefWidth="134.0" />
-      <Button layoutX="669.0" layoutY="332.0" mnemonicParsing="false" onAction="#STOCK_AJ_BOUTON_AFF" prefHeight="55.0" prefWidth="158.0" text="--&gt; AFFICHAGE">
+      <Button id="Button" layoutX="669.0" layoutY="332.0" mnemonicParsing="false" onAction="#STOCK_AJ_BOUTON_AFF" prefHeight="55.0" prefWidth="158.0" stylesheets="@css/style.css" text="--&gt; AFFICHAGE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
