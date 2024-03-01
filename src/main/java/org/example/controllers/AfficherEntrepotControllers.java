@@ -1,5 +1,6 @@
 package org.example.controllers;
 
+import com.itextpdf.text.DocumentException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -10,11 +11,11 @@ import javafx.scene.input.MouseButton;
 import javafx.util.Callback;
 import org.example.entites.Entrepot;
 
-import org.example.entites.Stock;
 import org.example.services.EntrepotService;
 
 
 import java.awt.event.ActionEvent;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -37,6 +38,15 @@ public class AfficherEntrepotControllers {
     private final EntrepotService entrepotService = new EntrepotService();
 
     @FXML
+    void ENTREPOT_PDF_BOUTON(javafx.event.ActionEvent actionEvent) throws SQLException, DocumentException, FileNotFoundException {
+
+      EntrepotService es = new EntrepotService();
+      es.generatePDF();
+    }
+
+
+    @FXML
+
     void ENTREPOT_AFF_BOUTON_AJ(javafx.event.ActionEvent actionEvent) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/AjouterEntrepot.fxml"));

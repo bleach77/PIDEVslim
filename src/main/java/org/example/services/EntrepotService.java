@@ -1,12 +1,21 @@
 package org.example.services;
 
+
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.pdf.PdfPTable;
 import org.example.entites.Entrepot;
 import org.example.entites.StatuE;
 import org.example.utils.MyDatabase;
 
+import java.io.FileNotFoundException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.pdf.PdfWriter;
+
+import java.io.FileOutputStream;
 
 public class EntrepotService implements IService<Entrepot> {
 
@@ -87,6 +96,45 @@ public class EntrepotService implements IService<Entrepot> {
     }
 
 
+    public void generatePDF() throws SQLException {
+        EntrepotService  es = new EntrepotService();
+        List<Entrepot> entrepots = es.recuperer(); // Fetch data from the database and populate the list
 
+        try {
+            Document document = new Document(PageSize.A4);
+            PdfWriter.getInstance(document, new FileOutputStream("Entrepot.pdf"));
+            document.open();
+
+            PdfPTable pdfTable = new PdfPTable(4); // Assuming 4 attributes in Entrepot
+            addTableHeader(pdfTable);
+            addRows(pdfTable, entrepots);
+
+            document.add(pdfTable);
+            document.close();
+
+            System.out.println("PDF generated successfully!");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Fetch data from the database and populate the list of Entrepot objects
+
+
+    private void addTableHeader(PdfPTable table) {
+        table.addCell("Name");
+        table.addCell("Adresse");
+        table.addCell("statut");
+        table.addCell("capacite");
+    }
+
+    private void addRows(PdfPTable table, List<Entrepot> entrepots) {
+        for (Entrepot entrepot : entrepots) {
+            table.addCell(entrepot.getNomE());
+            table.addCell(entrepot.getAdresseE());
+            table.addCell(entrepot.getStatutE().name());
+            table.addCell(String.valueOf(entrepot.getCapaciteE()));
+        }
+    }
 
 }

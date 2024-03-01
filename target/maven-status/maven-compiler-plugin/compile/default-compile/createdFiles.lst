@@ -13,7 +13,9 @@ org\example\controllers\AfficherEntrepotControllers$1.class
 org\example\entites\Stock.class
 org\example\services\StockService.class
 org\example\services\EntrepotService.class
+org\example\services\Sendmail.class
 org\example\controllers\AfficherStockControllers$1.class
+org\example\services\Sendmail$1.class
 org\example\utils\MyDatabase.class
 org\example\controllers\AjouterEntrepotControllers.class
 org\example\controllers\AfficherStockControllers.class

@@ -59,6 +59,12 @@
                 <Font name="System Bold" size="18.0" />
             </font>
         </Button>
+<!--    </Button>-->
+<!--        <Button id="Button" layoutX="753.0" layoutY="431.0" mnemonicParsing="false" onAction="#ENTREPOT_PDF_BOUTON" prefHeight="55.0" prefWidth="158.0" stylesheets="@css/style.css" text="&#45;&#45;&gt; MODIFIER">-->
+<!--            <font>-->
+<!--                <Font name="System Bold" size="18.0" />-->
+<!--            </font>-->
+<!--        </Button>-->
       <Button id="Button" layoutX="730.0" layoutY="192.0" mnemonicParsing="false" onAction="#ENTREPOT_RECH_BOUTON" prefHeight="55.0" prefWidth="179.0" stylesheets="@css/style.css" text="--&gt; RECHERCHER">
          <font>
             <Font name="System Bold" size="18.0" />
@@ -194,5 +200,6 @@
             </Button>
          </children>
       </Pane>
+      <Button id="Button" alignment="CENTER" layoutX="734.0" layoutY="131.0" mnemonicParsing="false" onAction="#ENTREPOT_PDF_BOUTON" prefHeight="45.0" prefWidth="176.0" stylesheets="@css/style.css" text="--&gt; PDF" />
     </children>
 </AnchorPane>
