@@ -201,5 +201,12 @@
          </children>
       </Pane>
       <Button id="Button" layoutX="734.0" layoutY="131.0" mnemonicParsing="false" onAction="#ENTREPOT_PDF_BOUTON" prefHeight="45.0" prefWidth="176.0" stylesheets="@css/style.css" text="--&gt; PDF" />
+      <Button id="Button" layoutX="345.0" layoutY="572.0" mnemonicParsing="false" onAction="#ENTREPOT_TRIER_ASC_BOUTON" prefHeight="45.0" prefWidth="176.0" stylesheets="@css/style.css" text="--&gt; Trier ASC" />
+      <Button id="Button" layoutX="547.0" layoutY="572.0" mnemonicParsing="false" onAction="#ENTREPOT_TRIER_DESC_BOUTON" prefHeight="45.0" prefWidth="176.0" stylesheets="@css/style.css" text="--&gt; Trier DESC" />
+      <Label alignment="CENTER" layoutX="244.0" layoutY="580.0" prefHeight="31.0" prefWidth="86.0" text="TRIER :">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>

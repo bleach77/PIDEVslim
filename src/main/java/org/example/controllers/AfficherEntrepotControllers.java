@@ -37,6 +37,16 @@ public class AfficherEntrepotControllers {
 
     private final EntrepotService entrepotService = new EntrepotService();
 
+    @FXML
+    void ENTREPOT_TRIER_ASC_BOUTON(ActionEvent event) {
+
+    }
+
+    @FXML
+    void ENTREPOT_TRIER_DESC_BOUTON(ActionEvent event) {
+
+    }
+
 
     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  API PDF !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     @FXML
@@ -44,7 +54,7 @@ public class AfficherEntrepotControllers {
       EntrepotService es = new EntrepotService();
       es.generatePDF();
     }
-
+    // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
     @FXML
 
