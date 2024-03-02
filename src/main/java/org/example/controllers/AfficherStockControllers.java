@@ -36,6 +36,113 @@ public class AfficherStockControllers {
 
     private final StockService stockService = new StockService();
 
+    @FXML
+    void STOCK_ANALYSE_BOUTON(ActionEvent event) {
+        try {
+            List<Stock> stocks = STOCK_AFF.getItems();
+
+            // Obtenir les codes produits en doublon
+            List<Integer> duplicateCodeProducts = getDuplicateCodeProducts(stocks);
+
+            if (!duplicateCodeProducts.isEmpty()) {
+                // Afficher un message d'erreur avec les codes produits en doublon
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Erreur");
+                alert.setHeaderText("Des doublons de code produit ont été trouvés !");
+                alert.setContentText("Nombre d'erreurs : " + duplicateCodeProducts.size() +
+                        "\nCodes produits en doublon : " + duplicateCodeProducts);
+                alert.showAndWait();
+            } else {
+                // Afficher un message de succès si aucun doublon n'est trouvé
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Succès");
+                alert.setHeaderText("Aucun doublon de code produit trouvé !");
+                alert.setContentText("Les éléments affichés dans le ListView sont valides.");
+                alert.showAndWait();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            // Gérer les erreurs éventuelles
+        }
+    }
+
+    private List<Integer> getDuplicateCodeProducts(List<Stock> stocks) {
+        // Créer une liste de codes produits pour vérifier les doublons
+        List<Integer> codeProducts = stocks.stream()
+                .map(Stock::getCodeProduitS)
+                .collect(Collectors.toList());
+
+        // Créer une liste des codes produits en doublon
+        return codeProducts.stream()
+                .filter(codeProduct -> Collections.frequency(codeProducts, codeProduct) > 1)
+                .distinct()
+                .collect(Collectors.toList());
+    }
+
+
+
+
+
+
+
+
+
+
+
+    @FXML
+    void STOCK_TRIER_ASC_BOUTON(ActionEvent event) {
+        try {
+            String searchText = STOCK_RECH1.getText().toLowerCase().trim();
+            List<Stock> stocks;
+
+            if (searchText.isEmpty()) {
+                stocks = stockService.recuperer();
+            } else {
+                stocks = stockService.recuperer().stream()
+                        .filter(stock ->
+                                String.valueOf(stock.getCodeProduitS()).toLowerCase().contains(searchText) ||
+                                        String.valueOf(stock.getQuantiteS()).toLowerCase().contains(searchText) ||
+                                        String.valueOf(stock.getPrixUnitaireS()).toLowerCase().contains(searchText) ||
+                                        String.valueOf(stock.getdateRestockS()).toLowerCase().contains(searchText))
+                        .toList();
+            }
+
+            ObservableList<Stock> observableStocks = FXCollections.observableArrayList(stocks);
+            observableStocks.sort((s1, s2) -> Integer.compare(s1.getCodeProduitS(), s2.getCodeProduitS()));
+            STOCK_AFF.setItems(observableStocks);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Gérer les erreurs de récupération des données de la base de données
+        }
+    }
+
+    @FXML
+    void STOCK_TRIER_DESC_BOUTON(ActionEvent event) {
+        try {
+            String searchText = STOCK_RECH1.getText().toLowerCase().trim();
+            List<Stock> stocks;
+
+            if (searchText.isEmpty()) {
+                stocks = stockService.recuperer();
+            } else {
+                stocks = stockService.recuperer().stream()
+                        .filter(stock ->
+                                String.valueOf(stock.getCodeProduitS()).toLowerCase().contains(searchText) ||
+                                        String.valueOf(stock.getQuantiteS()).toLowerCase().contains(searchText) ||
+                                        String.valueOf(stock.getPrixUnitaireS()).toLowerCase().contains(searchText) ||
+                                        String.valueOf(stock.getdateRestockS()).toLowerCase().contains(searchText))
+                        .toList();
+            }
+
+            ObservableList<Stock> observableStocks = FXCollections.observableArrayList(stocks);
+            observableStocks.sort((s1, s2) -> Integer.compare(s2.getCodeProduitS(), s1.getCodeProduitS()));
+            STOCK_AFF.setItems(observableStocks);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Gérer les erreurs de récupération des données de la base de données
+        }
+    }
+
     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  API PDF !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     @FXML
     void STOCK_PDF_BOUTON(javafx.event.ActionEvent actionEvent) throws SQLException, DocumentException, FileNotFoundException {

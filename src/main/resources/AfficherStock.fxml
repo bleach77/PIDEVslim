@@ -195,5 +195,17 @@
          </children>
       </Pane>
       <Button id="Button" layoutX="729.0" layoutY="173.0" mnemonicParsing="false" onAction="#STOCK_PDF_BOUTON" prefHeight="45.0" prefWidth="176.0" stylesheets="@css/style.css" text="--&gt; PDF" />
+      <Label alignment="CENTER" layoutX="254.0" layoutY="590.0" prefHeight="31.0" prefWidth="86.0" text="TRIER :">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+      </Label>
+      <Button id="Button" layoutX="557.0" layoutY="582.0" mnemonicParsing="false" onAction="#STOCK_TRIER_DESC_BOUTON" prefHeight="45.0" prefWidth="176.0" stylesheets="@css/style.css" text="--&gt; Trier DESC" />
+      <Button id="Button" layoutX="355.0" layoutY="582.0" mnemonicParsing="false" onAction="#STOCK_TRIER_ASC_BOUTON" prefHeight="45.0" prefWidth="176.0" stylesheets="@css/style.css" text="--&gt; Trier ASC" />
+      <Button id="Button" layoutX="748.0" layoutY="512.0" mnemonicParsing="false" onAction="#STOCK_ANALYSE_BOUTON" prefHeight="55.0" prefWidth="158.0" stylesheets="@css/style.css" text="--&gt; ANALYSE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

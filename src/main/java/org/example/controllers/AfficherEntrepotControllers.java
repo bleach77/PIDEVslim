@@ -11,6 +11,10 @@ import javafx.scene.input.MouseButton;
 import javafx.util.Callback;
 import org.example.entites.Entrepot;
 
+import java.sql.SQLException;
+import java.util.Comparator;
+import java.util.List;
+
 import org.example.services.EntrepotService;
 
 
@@ -38,14 +42,60 @@ public class AfficherEntrepotControllers {
     private final EntrepotService entrepotService = new EntrepotService();
 
     @FXML
-    void ENTREPOT_TRIER_ASC_BOUTON(ActionEvent event) {
+    void ENTREPOT_TRIER_ASC_BOUTON(javafx.event.ActionEvent event) {
+        try {
+            String searchText = ENTREPOT_RECH1.getText().toLowerCase().trim();
+            List<Entrepot> entrepots;
 
+            if (searchText.isEmpty()) {
+                entrepots = entrepotService.recuperer();
+            } else {
+                entrepots = entrepotService.recuperer().stream()
+                        .filter(entrepot ->
+                                String.valueOf(entrepot.getNomE()).toLowerCase().contains(searchText) ||
+                                        String.valueOf(entrepot.getAdresseE()).toLowerCase().contains(searchText) ||
+                                        String.valueOf(entrepot.getCapaciteE()).toLowerCase().contains(searchText) ||
+                                        String.valueOf(entrepot.getStatutE()).toLowerCase().contains(searchText))
+                        .toList();
+            }
+
+            ObservableList<Entrepot> observableEntrepots = FXCollections.observableArrayList(entrepots);
+            observableEntrepots.sort(Comparator.comparing(Entrepot::getNomE));
+            ENTREPOT_AFF.setItems(observableEntrepots);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Gérer les erreurs de récupération des données de la base de données
+        }
     }
 
     @FXML
-    void ENTREPOT_TRIER_DESC_BOUTON(ActionEvent event) {
+    void ENTREPOT_TRIER_DESC_BOUTON(javafx.event.ActionEvent event) {
+        try {
+            String searchText = ENTREPOT_RECH1.getText().toLowerCase().trim();
+            List<Entrepot> entrepots;
 
+            if (searchText.isEmpty()) {
+                entrepots = entrepotService.recuperer();
+            } else {
+                entrepots = entrepotService.recuperer().stream()
+                        .filter(entrepot ->
+                                String.valueOf(entrepot.getNomE()).toLowerCase().contains(searchText) ||
+                                        String.valueOf(entrepot.getAdresseE()).toLowerCase().contains(searchText) ||
+                                        String.valueOf(entrepot.getCapaciteE()).toLowerCase().contains(searchText) ||
+                                        String.valueOf(entrepot.getStatutE()).toLowerCase().contains(searchText))
+                        .toList();
+            }
+
+            ObservableList<Entrepot> observableEntrepots = FXCollections.observableArrayList(entrepots);
+            observableEntrepots.sort((e1, e2) -> e2.getNomE().compareToIgnoreCase(e1.getNomE()));
+            ENTREPOT_AFF.setItems(observableEntrepots);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Gérer les erreurs de récupération des données de la base de données
+        }
     }
+
+
 
 
     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  API PDF !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!

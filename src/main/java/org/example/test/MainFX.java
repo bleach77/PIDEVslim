@@ -11,7 +11,7 @@ public class MainFX extends Application
     @Override
     public void start(Stage primaryStage) throws Exception
     {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherEntrepot2.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherStock.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
         primaryStage.setTitle("Gestion Entrepot/Stock");
