@@ -39,7 +39,6 @@ public class AfficherEntrepotControllers {
 
     @FXML
     void ENTREPOT_PDF_BOUTON(javafx.event.ActionEvent actionEvent) throws SQLException, DocumentException, FileNotFoundException {
-
       EntrepotService es = new EntrepotService();
       es.generatePDF();
     }

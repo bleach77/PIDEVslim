@@ -59,8 +59,8 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
-      <TextField fx:id="STOCK_RECH1" layoutX="758.0" layoutY="237.0" prefHeight="31.0" prefWidth="138.0" />
-      <Button id="Button" layoutX="727.0" layoutY="163.0" mnemonicParsing="false" onAction="#STOCK_RECH_BOUTON" prefHeight="55.0" prefWidth="179.0" stylesheets="@css/style.css" text="--&gt; RECHERCHER">
+      <TextField fx:id="STOCK_RECH1" layoutX="758.0" layoutY="310.0" prefHeight="31.0" prefWidth="138.0" />
+      <Button id="Button" layoutX="727.0" layoutY="236.0" mnemonicParsing="false" onAction="#STOCK_RECH_BOUTON" prefHeight="55.0" prefWidth="179.0" stylesheets="@css/style.css" text="--&gt; RECHERCHER">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -194,5 +194,6 @@
             </Button>
          </children>
       </Pane>
+      <Button id="Button" layoutX="729.0" layoutY="173.0" mnemonicParsing="false" onAction="#STOCK_PDF_BOUTON" prefHeight="45.0" prefWidth="176.0" stylesheets="@css/style.css" text="--&gt; PDF" />
    </children>
 </AnchorPane>

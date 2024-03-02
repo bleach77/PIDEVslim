@@ -1,5 +1,6 @@
 org\example\controllers\AfficherStockControllers$1$1.class
 org\example\controllers\AfficherEntrepotControllers$1$1.class
+org\example\services\Slacknotif.class
 org\example\controllers\ModifierStockControllers.class
 org\example\entites\Entrepot.class
 org\example\controllers\AjouterStockControllers.class

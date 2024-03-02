@@ -11,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.example.entites.Stock;
 import org.example.services.Sendmail;
+import org.example.services.Slacknotif;
 import org.example.services.StockService;
 import org.w3c.dom.Text;
 
@@ -71,7 +72,7 @@ public class AjouterStockControllers {
                 STOCK_AJ_REP1.setText("Hamdoula !");
                 Sendmail sender = new Sendmail();
                 sender.envoyer("slim-fady.hanafi@esprit.tn","Confirmation","Confirmation");
-
+                Slacknotif.sendSlackNotification("stock ajoute");
             } catch (SQLException e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error");

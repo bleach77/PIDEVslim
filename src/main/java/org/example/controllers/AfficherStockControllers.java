@@ -1,5 +1,6 @@
 package org.example.controllers;
 
+import com.itextpdf.text.DocumentException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -10,8 +11,10 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseButton;
 import javafx.util.Callback;
 import org.example.entites.Stock;
+import org.example.services.EntrepotService;
 import org.example.services.StockService;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Collections;
@@ -32,6 +35,12 @@ public class AfficherStockControllers {
     private TextField STOCK_RECH1;
 
     private final StockService stockService = new StockService();
+
+    @FXML
+    void STOCK_PDF_BOUTON(javafx.event.ActionEvent actionEvent) throws SQLException, DocumentException, FileNotFoundException {
+        StockService es = new StockService();
+        es.generatePDF();
+    }
 
     @FXML
     void STOCK_RECH_BOUTON(ActionEvent event) {
