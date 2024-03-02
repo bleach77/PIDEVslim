@@ -8,6 +8,7 @@ import org.example.entites.Entrepot;
 import org.example.entites.StatuE;
 import org.example.services.EntrepotService;
 import org.example.services.Sendmail;
+import org.example.services.Slacknotif;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -86,9 +87,30 @@ public class AjouterEntrepotControllers {
             // Utiliser la valeur d'énumération statuE comme nécessaire
             ss.ajouter(new Entrepot(ENTREPOT_AJ_N1.getText(), ENTREPOT_AJ_AD1.getText(), Integer.parseInt(ENTREPOT_AJ_CA1.getText()), statuE));
             ENTREPOT_AJ_REP1.setText("Hamdoula !");
-            Sendmail sender = new Sendmail();
-            sender.envoyer("slim-fady.hanafi@esprit.tn","Confirmation","Confirmation !!!");
 
+            // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! API MAILING !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            Sendmail sender = new Sendmail();
+            String message = "Bonjour Madame/Monsieur,\n\n";
+            message += "Nous vous informons que vous avez ajouté un nouvel entrepôt au système avec succès.\n";
+            message += "\n";
+            message += "Les détails de l'entrepôt ajouté sont :\n";
+            message += "- Nom de l'entrepôt : " + ENTREPOT_AJ_N1.getText();// Remplacez [Nom de l'entrepôt] par le nom réel de l'entrepôt ajouté
+            message += "\n";
+            message += "- Adresse de l'entrepôt : " + ENTREPOT_AJ_AD1.getText(); // Remplacez [Adresse de l'entrepôt] par l'adresse réelle de l'entrepôt ajouté
+            message += "\n";
+            message += "- Capacité de l'entrepôt : " + Integer.parseInt(ENTREPOT_AJ_CA1.getText()); // Remplacez [Capacité de l'entrepôt] par la capacité réelle de l'entrepôt ajouté
+            message += "\n";
+            message += "- Statut de l'entrepôt : " + statuE; // Remplacez [Statut de l'entrepôt] par le statut réel de l'entrepôt ajouté
+            message += "\n\n\n";
+            message += "Bien à vous,";
+            message += "\n";
+            message += "Cordialement.";
+
+            sender.envoyer("slim-fady.hanafi@esprit.tn", "Confirmation de l'ajout d'un entrepôt", message);
+
+            // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+            Slacknotif.sendSlackNotification("Entrepot Ajouté !!!!!! ");
         } catch (SQLException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erreur");

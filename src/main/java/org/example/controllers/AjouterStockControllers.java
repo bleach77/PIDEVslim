@@ -70,9 +70,29 @@ public class AjouterStockControllers {
 
                 ss.ajouter(new Stock( Integer.parseInt(STOCK_AJ_CP1.getText()), Integer.parseInt(STOCK_AJ_Q1.getText()) , Float.parseFloat(STOCK_AJ_PU1.getText())));
                 STOCK_AJ_REP1.setText("Hamdoula !");
+
+                // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! API MAILING !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 Sendmail sender = new Sendmail();
-                sender.envoyer("slim-fady.hanafi@esprit.tn","Confirmation","Confirmation");
-                Slacknotif.sendSlackNotification("stock ajoute");
+                String message = "Bonjour Madame/Monsieur,\n\n";
+                message += "Nous vous informons que vous avez ajouté un nouveau stock au système avec succès.\n";
+                message += "\n";
+                message += "Les détails du stock ajouté sont :\n";
+                message += "- Code produit du stock : " + Integer.parseInt(STOCK_AJ_CP1.getText());// Remplacez [Nom de l'entrepôt] par le nom réel de l'entrepôt ajouté
+                message += "\n";
+                message += "- Quantité du stock : " + Integer.parseInt(STOCK_AJ_Q1.getText()); // Remplacez [Adresse de l'entrepôt] par l'adresse réelle de l'entrepôt ajouté
+                message += "\n";
+                message += "- Prix unitaire du stock : " + Float.parseFloat(STOCK_AJ_PU1.getText()); // Remplacez [Capacité de l'entrepôt] par la capacité réelle de l'entrepôt ajouté
+                message += "\n\n\n";
+                message += "Bien à vous,";
+                message += "\n";
+                message += "Cordialement.";
+
+                sender.envoyer("slim-fady.hanafi@esprit.tn", "Confirmation de l'ajout d'un stock", message);
+
+                // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+                Slacknotif.sendSlackNotification("Stock Ajouté !!!!!! ");
             } catch (SQLException e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error");

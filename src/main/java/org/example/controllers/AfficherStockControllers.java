@@ -36,6 +36,7 @@ public class AfficherStockControllers {
 
     private final StockService stockService = new StockService();
 
+    // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  API PDF !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     @FXML
     void STOCK_PDF_BOUTON(javafx.event.ActionEvent actionEvent) throws SQLException, DocumentException, FileNotFoundException {
         StockService es = new StockService();
