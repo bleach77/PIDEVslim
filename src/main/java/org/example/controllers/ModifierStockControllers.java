@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.example.entites.Stock;
+import org.example.services.Sendmail;
 import org.example.services.StockService;
 import org.w3c.dom.Text;
 
@@ -79,6 +80,27 @@ public class ModifierStockControllers {
             }
             ss.modifier(new Stock(Integer.parseInt(STOCK_MO_ID1.getText()),Integer.parseInt(STOCK_MO_CP1.getText()), Integer.parseInt(STOCK_MO_Q1.getText()) , Float.parseFloat(STOCK_MO_PU1.getText())));
             STOCK_MO_REP1.setText("Hamdoula !");
+
+            // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! API MAILING !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            Sendmail sender = new Sendmail();
+            String message = "Bonjour Madame/Monsieur,\n\n";
+            message += "Nous vous informons que vous avez modifié un stock au système avec succès.\n";
+            message += "\n";
+            message += "Les détails du stock modifié sont :\n";
+            message += "- Code produit du stock : " + Integer.parseInt(STOCK_MO_CP1.getText());// Remplacez [Nom de l'entrepôt] par le nom réel de l'entrepôt ajouté
+            message += "\n";
+            message += "- Quantité du stock : " + Integer.parseInt(STOCK_MO_Q1.getText()); // Remplacez [Adresse de l'entrepôt] par l'adresse réelle de l'entrepôt ajouté
+            message += "\n";
+            message += "- Prix unitaire du stock : " + Float.parseFloat(STOCK_MO_PU1.getText()); // Remplacez [Capacité de l'entrepôt] par la capacité réelle de l'entrepôt ajouté
+            message += "\n\n\n";
+            message += "Bien à vous,";
+            message += "\n";
+            message += "Cordialement.";
+
+            sender.envoyer("slim-fady.hanafi@esprit.tn", "Confirmation de la modification d'un stock", message);
+
+            // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
         } catch (SQLException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");

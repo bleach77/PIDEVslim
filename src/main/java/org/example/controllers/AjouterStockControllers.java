@@ -11,7 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.example.entites.Stock;
 import org.example.services.Sendmail;
-import org.example.services.Slacknotif;
+//import org.example.services.Slacknotif;
 import org.example.services.StockService;
 import org.w3c.dom.Text;
 
@@ -92,7 +92,7 @@ public class AjouterStockControllers {
                 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
-                Slacknotif.sendSlackNotification("Stock Ajouté !!!!!! ");
+//                Slacknotif.sendSlackNotification("Stock Ajouté !!!!!! ");
             } catch (SQLException e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error");

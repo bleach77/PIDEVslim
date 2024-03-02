@@ -8,7 +8,7 @@ import org.example.entites.Entrepot;
 import org.example.entites.StatuE;
 import org.example.services.EntrepotService;
 import org.example.services.Sendmail;
-import org.example.services.Slacknotif;
+//import org.example.services.Slacknotif;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -110,7 +110,12 @@ public class AjouterEntrepotControllers {
 
             // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-            Slacknotif.sendSlackNotification("Entrepot Ajouté !!!!!! ");
+
+//            Slacknotif.sendSlackNotification("Entrepot Ajouté !!!!!! ");
+//
+
+
+
         } catch (SQLException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erreur");

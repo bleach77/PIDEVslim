@@ -11,7 +11,7 @@ import org.example.entites.StatuE;
 
 import org.example.entites.Stock;
 import org.example.services.EntrepotService;
-
+import org.example.services.Sendmail;
 
 
 import java.io.IOException;
@@ -93,6 +93,31 @@ public class ModifierEntrepotControllers {
             se.modifier(new Entrepot(Integer.parseInt(ENTREPOT_MO_ID1.getText()),ENTREPOT_MO_NO1.getText(), ENTREPOT_MO_AD1.getText(), Integer.parseInt(ENTREPOT_MO_CA1.getText()),  ENTREPOT_MO_S1.getValue()));
             System.out.println("Stop");
             ENTREPOT_MO_REP1.setText("Hamdoula !");
+
+
+            // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! API MAILING !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            Sendmail sender = new Sendmail();
+            String message = "Bonjour Madame/Monsieur,\n\n";
+            message += "Nous vous informons que vous avez modifié un entrepôt au système avec succès.\n";
+            message += "\n";
+            message += "Les détails de l'entrepôt modifié sont :\n";
+            message += "- Nom de l'entrepôt : " + ENTREPOT_MO_NO1.getText();// Remplacez [Nom de l'entrepôt] par le nom réel de l'entrepôt ajouté
+            message += "\n";
+            message += "- Adresse de l'entrepôt : " + ENTREPOT_MO_AD1.getText(); // Remplacez [Adresse de l'entrepôt] par l'adresse réelle de l'entrepôt ajouté
+            message += "\n";
+            message += "- Capacité de l'entrepôt : " + Integer.parseInt(ENTREPOT_MO_CA1.getText()); // Remplacez [Capacité de l'entrepôt] par la capacité réelle de l'entrepôt ajouté
+            message += "\n";
+            message += "- Statut de l'entrepôt : " + ENTREPOT_MO_S1.getValue(); // Remplacez [Statut de l'entrepôt] par le statut réel de l'entrepôt ajouté
+            message += "\n\n\n";
+            message += "Bien à vous,";
+            message += "\n";
+            message += "Cordialement.";
+
+            sender.envoyer("slim-fady.hanafi@esprit.tn", "Confirmation de la modification d'un entrepôt", message);
+
+            // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
         } catch (SQLException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erreur");
