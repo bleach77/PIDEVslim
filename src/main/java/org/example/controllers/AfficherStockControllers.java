@@ -218,11 +218,11 @@ public class AfficherStockControllers {
                                 setText("            "+
                                         stock.getCodeProduitS() +
                                         "                                 "  +
-                                                stock.getQuantiteS() +
+                                        stock.getQuantiteS() +
                                         "                                " +
-                                                stock.getPrixUnitaireS() +
+                                        stock.getPrixUnitaireS() +
                                         "                            " +
-                                                stock.getdateRestockS());
+                                        stock.getdateRestockS());
                             }
                         }
                     };
