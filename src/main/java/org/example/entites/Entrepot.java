@@ -8,6 +8,7 @@ public class Entrepot {
     private String NomE, AdresseE;
 
 
+
     public Entrepot(int EntrepotID, String NomE, String AdresseE, int CapaciteE, StatuE StatutE) {
         this.EntrepotID = EntrepotID;
         this.NomE = NomE;

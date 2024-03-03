@@ -10,18 +10,14 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseButton;
 import javafx.util.Callback;
 import org.example.entites.Entrepot;
-
-import java.sql.SQLException;
-import java.util.Comparator;
-import java.util.List;
-
 import org.example.services.EntrepotService;
-
 
 import java.awt.event.ActionEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -30,104 +26,38 @@ public class AfficherEntrepotControllers {
     @FXML
     private Button myButton;
 
-
     @FXML
     private TextField ENTREPOT_RECH1;
-
 
     @FXML
     private ListView<Entrepot> ENTREPOT_AFF;
 
-
     private final EntrepotService entrepotService = new EntrepotService();
 
     @FXML
-    void ENTREPOT_TRIER_ASC_BOUTON(javafx.event.ActionEvent event) {
-        try {
-            String searchText = ENTREPOT_RECH1.getText().toLowerCase().trim();
-            List<Entrepot> entrepots;
-
-            if (searchText.isEmpty()) {
-                entrepots = entrepotService.recuperer();
-            } else {
-                entrepots = entrepotService.recuperer().stream()
-                        .filter(entrepot ->
-                                String.valueOf(entrepot.getNomE()).toLowerCase().contains(searchText) ||
-                                        String.valueOf(entrepot.getAdresseE()).toLowerCase().contains(searchText) ||
-                                        String.valueOf(entrepot.getCapaciteE()).toLowerCase().contains(searchText) ||
-                                        String.valueOf(entrepot.getStatutE()).toLowerCase().contains(searchText))
-                        .toList();
-            }
-
-            ObservableList<Entrepot> observableEntrepots = FXCollections.observableArrayList(entrepots);
-            observableEntrepots.sort(Comparator.comparing(Entrepot::getNomE));
-            ENTREPOT_AFF.setItems(observableEntrepots);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            // Gérer les erreurs de récupération des données de la base de données
-        }
-    }
+    private TextField ENTREPOT_DYN_NB;
 
     @FXML
-    void ENTREPOT_TRIER_DESC_BOUTON(javafx.event.ActionEvent event) {
+    public void ENTREPOT_ENT_BOUTON_STOCK(javafx.event.ActionEvent actionEvent) {
         try {
-            String searchText = ENTREPOT_RECH1.getText().toLowerCase().trim();
-            List<Entrepot> entrepots;
-
-            if (searchText.isEmpty()) {
-                entrepots = entrepotService.recuperer();
-            } else {
-                entrepots = entrepotService.recuperer().stream()
-                        .filter(entrepot ->
-                                String.valueOf(entrepot.getNomE()).toLowerCase().contains(searchText) ||
-                                        String.valueOf(entrepot.getAdresseE()).toLowerCase().contains(searchText) ||
-                                        String.valueOf(entrepot.getCapaciteE()).toLowerCase().contains(searchText) ||
-                                        String.valueOf(entrepot.getStatutE()).toLowerCase().contains(searchText))
-                        .toList();
-            }
-
-            ObservableList<Entrepot> observableEntrepots = FXCollections.observableArrayList(entrepots);
-            observableEntrepots.sort((e1, e2) -> e2.getNomE().compareToIgnoreCase(e1.getNomE()));
-            ENTREPOT_AFF.setItems(observableEntrepots);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            // Gérer les erreurs de récupération des données de la base de données
-        }
-    }
-
-
-
-
-    // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  API PDF !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    @FXML
-    void ENTREPOT_PDF_BOUTON(javafx.event.ActionEvent actionEvent) throws SQLException, DocumentException, FileNotFoundException {
-      EntrepotService es = new EntrepotService();
-      es.generatePDF();
-    }
-    // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-    @FXML
-
-    void ENTREPOT_AFF_BOUTON_AJ(javafx.event.ActionEvent actionEvent) {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/AjouterEntrepot.fxml"));
-            ENTREPOT_AFF.getScene().setRoot(root);
+            Parent root = FXMLLoader.load(getClass().getResource("/AfficherStock.fxml"));
+            ENTREPOT_RECH1.getScene().setRoot(root);
         } catch (IOException e) {
             System.err.println(e.getMessage());
         }
     }
 
 
-
     @FXML
-    void initialize()
-    {
+    void initialize() {
         try {
             List<Entrepot> entrepots = entrepotService.recuperer(); // Récupérer les données depuis le service
             ObservableList<Entrepot> observableEntrepots = FXCollections.observableArrayList(entrepots);
 
             ENTREPOT_AFF.setItems(observableEntrepots);
 
+            // Mettre à jour le nombre d'entrepôts affichés dans ENTREPOT_DYN_NB
+            ENTREPOT_DYN_NB.setText(String.valueOf(observableEntrepots.size()));
 
             // Configurer l'adaptateur de cellule personnalisé
             ENTREPOT_AFF.setCellFactory(new Callback<ListView<Entrepot>, ListCell<Entrepot>>() {
@@ -178,6 +108,8 @@ public class AfficherEntrepotControllers {
                                 entrepotService.supprimer(selectedEntrepot.getEntrepotID());
                                 // Rafraîchir la liste après la suppression
                                 ENTREPOT_AFF.getItems().remove(selectedEntrepot);
+                                // Mettre à jour le nombre d'entrepôts affichés dans ENTREPOT_DYN_NB après la suppression
+                                ENTREPOT_DYN_NB.setText(String.valueOf(ENTREPOT_AFF.getItems().size()));
                             } catch (SQLException e) {
                                 e.printStackTrace();
                                 // Gérer l'erreur de suppression
@@ -187,6 +119,125 @@ public class AfficherEntrepotControllers {
                 }
             }
         });
+    }
+
+    @FXML
+    void ENTREPOT_ANALYSE_BOUTON(javafx.event.ActionEvent event) {
+        try {
+            List<Entrepot> entrepots = ENTREPOT_AFF.getItems();
+
+            // Obtenir les noms en doublon
+            List<String> duplicateNames = getDuplicateNames(entrepots);
+
+            if (!duplicateNames.isEmpty()) {
+                // Afficher un message d'erreur avec les noms en doublon
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Erreur");
+                alert.setHeaderText("Des doublons de noms d'entrepôt ont été trouvés !");
+                alert.setContentText("Nombre d'erreurs : " + duplicateNames.size() +
+                        "\nNoms d'entrepôt en doublon : " + duplicateNames);
+                alert.showAndWait();
+            } else {
+                // Afficher un message de succès si aucun doublon n'est trouvé
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Succès");
+                alert.setHeaderText("Aucun doublon de nom d'entrepôt trouvé !");
+                alert.setContentText("Les éléments affichés dans le ListView sont valides.");
+                alert.showAndWait();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            // Gérer les erreurs éventuelles
+        }
+    }
+
+    private List<String> getDuplicateNames(List<Entrepot> entrepots) {
+        // Créer une liste de noms d'entrepôt pour vérifier les doublons
+        List<String> names = entrepots.stream()
+                .map(Entrepot::getNomE)
+                .collect(Collectors.toList());
+
+        // Créer une liste des noms d'entrepôt en doublon
+        return names.stream()
+                .filter(name -> Collections.frequency(names, name) > 1)
+                .distinct()
+                .collect(Collectors.toList());
+    }
+
+    @FXML
+    void ENTREPOT_TRIER_ASC_BOUTON(javafx.event.ActionEvent event) {
+        try {
+            String searchText = ENTREPOT_RECH1.getText().toLowerCase().trim();
+            List<Entrepot> entrepots;
+
+            if (searchText.isEmpty()) {
+                entrepots = entrepotService.recuperer();
+            } else {
+                entrepots = entrepotService.recuperer().stream()
+                        .filter(entrepot ->
+                                String.valueOf(entrepot.getNomE()).toLowerCase().contains(searchText) ||
+                                        String.valueOf(entrepot.getAdresseE()).toLowerCase().contains(searchText) ||
+                                        String.valueOf(entrepot.getCapaciteE()).toLowerCase().contains(searchText) ||
+                                        String.valueOf(entrepot.getStatutE()).toLowerCase().contains(searchText))
+                        .toList();
+            }
+
+            ObservableList<Entrepot> observableEntrepots = FXCollections.observableArrayList(entrepots);
+            observableEntrepots.sort(Comparator.comparing(Entrepot::getNomE));
+            ENTREPOT_AFF.setItems(observableEntrepots);
+            // Mettre à jour le nombre d'entrepôts affichés dans ENTREPOT_DYN_NB après le tri
+            ENTREPOT_DYN_NB.setText(String.valueOf(observableEntrepots.size()));
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Gérer les erreurs de récupération des données de la base de données
+        }
+    }
+
+    @FXML
+    void ENTREPOT_TRIER_DESC_BOUTON(javafx.event.ActionEvent event) {
+        try {
+            String searchText = ENTREPOT_RECH1.getText().toLowerCase().trim();
+            List<Entrepot> entrepots;
+
+            if (searchText.isEmpty()) {
+                entrepots = entrepotService.recuperer();
+            } else {
+                entrepots = entrepotService.recuperer().stream()
+                        .filter(entrepot ->
+                                String.valueOf(entrepot.getNomE()).toLowerCase().contains(searchText) ||
+                                        String.valueOf(entrepot.getAdresseE()).toLowerCase().contains(searchText) ||
+                                        String.valueOf(entrepot.getCapaciteE()).toLowerCase().contains(searchText) ||
+                                        String.valueOf(entrepot.getStatutE()).toLowerCase().contains(searchText))
+                        .toList();
+            }
+
+            ObservableList<Entrepot> observableEntrepots = FXCollections.observableArrayList(entrepots);
+            observableEntrepots.sort((e1, e2) -> e2.getNomE().compareToIgnoreCase(e1.getNomE()));
+            ENTREPOT_AFF.setItems(observableEntrepots);
+            // Mettre à jour le nombre d'entrepôts affichés dans ENTREPOT_DYN_NB après le tri
+            ENTREPOT_DYN_NB.setText(String.valueOf(observableEntrepots.size()));
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Gérer les erreurs de récupération des données de la base de données
+        }
+    }
+
+    // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  API PDF !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    @FXML
+    void ENTREPOT_PDF_BOUTON(javafx.event.ActionEvent actionEvent) throws SQLException, DocumentException, FileNotFoundException {
+        EntrepotService es = new EntrepotService();
+        es.generatePDF();
+    }
+    // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+    @FXML
+    void ENTREPOT_AFF_BOUTON_AJ(javafx.event.ActionEvent actionEvent) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/AjouterEntrepot.fxml"));
+            ENTREPOT_AFF.getScene().setRoot(root);
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
     }
 
     public void ENTREPOT_AFF_BOUTON_MO(javafx.event.ActionEvent actionEvent) {
@@ -226,9 +277,13 @@ public class AfficherEntrepotControllers {
             }
 
             ENTREPOT_AFF.setItems(observableEntrepots);
+            // Mettre à jour le nombre d'entrepôts affichés dans ENTREPOT_DYN_NB après la recherche
+            ENTREPOT_DYN_NB.setText(String.valueOf(observableEntrepots.size()));
         } catch (SQLException e) {
             e.printStackTrace();
             // Gérer les erreurs de récupération des données de la base de données
         }
     }
+
+
 }

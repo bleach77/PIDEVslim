@@ -11,7 +11,6 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseButton;
 import javafx.util.Callback;
 import org.example.entites.Stock;
-import org.example.services.EntrepotService;
 import org.example.services.StockService;
 
 import java.io.FileNotFoundException;
@@ -26,8 +25,6 @@ public class AfficherStockControllers {
     @FXML
     private Button myButton;
 
-
-
     @FXML
     private ListView<Stock> STOCK_AFF;
 
@@ -35,6 +32,9 @@ public class AfficherStockControllers {
     private TextField STOCK_RECH1;
 
     private final StockService stockService = new StockService();
+
+    @FXML
+    private TextField STOCK_DYN_NB;
 
     @FXML
     void STOCK_ANALYSE_BOUTON(ActionEvent event) {
@@ -79,16 +79,6 @@ public class AfficherStockControllers {
                 .collect(Collectors.toList());
     }
 
-
-
-
-
-
-
-
-
-
-
     @FXML
     void STOCK_TRIER_ASC_BOUTON(ActionEvent event) {
         try {
@@ -110,6 +100,8 @@ public class AfficherStockControllers {
             ObservableList<Stock> observableStocks = FXCollections.observableArrayList(stocks);
             observableStocks.sort((s1, s2) -> Integer.compare(s1.getCodeProduitS(), s2.getCodeProduitS()));
             STOCK_AFF.setItems(observableStocks);
+            // Mettre à jour le nombre de stocks affichés dans STOCK_DYN_NB après le tri
+            STOCK_DYN_NB.setText(String.valueOf(observableStocks.size()));
         } catch (SQLException e) {
             e.printStackTrace();
             // Gérer les erreurs de récupération des données de la base de données
@@ -137,6 +129,8 @@ public class AfficherStockControllers {
             ObservableList<Stock> observableStocks = FXCollections.observableArrayList(stocks);
             observableStocks.sort((s1, s2) -> Integer.compare(s2.getCodeProduitS(), s1.getCodeProduitS()));
             STOCK_AFF.setItems(observableStocks);
+            // Mettre à jour le nombre de stocks affichés dans STOCK_DYN_NB après le tri
+            STOCK_DYN_NB.setText(String.valueOf(observableStocks.size()));
         } catch (SQLException e) {
             e.printStackTrace();
             // Gérer les erreurs de récupération des données de la base de données
@@ -173,13 +167,13 @@ public class AfficherStockControllers {
             }
 
             STOCK_AFF.setItems(observableStocks);
+            // Mettre à jour le nombre de stocks affichés dans STOCK_DYN_NB après la recherche
+            STOCK_DYN_NB.setText(String.valueOf(observableStocks.size()));
         } catch (SQLException e) {
             e.printStackTrace();
             // Gérer les erreurs de récupération des données de la base de données
         }
     }
-
-
 
     @FXML
     void STOCK_AFF_BOUTON_AJ(javafx.event.ActionEvent actionEvent) {
@@ -191,17 +185,22 @@ public class AfficherStockControllers {
         }
     }
 
-
-
     @FXML
-    void initialize()
-    {
+    public void ENTREPOT_STOCK_BOUTON_ENT(javafx.event.ActionEvent actionEvent) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/AfficherEntrepot2.fxml"));
+            STOCK_RECH1.getScene().setRoot(root);
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+    @FXML
+    void initialize() {
         try {
             List<Stock> stocks = stockService.recuperer(); // Récupérer les données depuis le service
             ObservableList<Stock> observableStocks = FXCollections.observableArrayList(stocks);
 
             STOCK_AFF.setItems(observableStocks);
-
 
             // Configurer l'adaptateur de cellule personnalisé
             STOCK_AFF.setCellFactory(new Callback<ListView<Stock>, ListCell<Stock>>() {
@@ -215,9 +214,9 @@ public class AfficherStockControllers {
                             if (stock == null || empty) {
                                 setText(null);
                             } else {
-                                setText("            "+
+                                setText("            " +
                                         stock.getCodeProduitS() +
-                                        "                                 "  +
+                                        "                                 " +
                                         stock.getQuantiteS() +
                                         "                                " +
                                         stock.getPrixUnitaireS() +
@@ -229,11 +228,13 @@ public class AfficherStockControllers {
                 }
             });
 
+            // Mettre à jour le nombre de stocks affichés dans STOCK_DYN_NB après l'initialisation
+            STOCK_DYN_NB.setText(String.valueOf(observableStocks.size()));
+
         } catch (SQLException e) {
             e.printStackTrace();
             // Gérer les erreurs de récupération des données de la base de données
         }
-
 
         // Ajouter un gestionnaire pour le double-clic sur un élément dans le ListView
         STOCK_AFF.setOnMouseClicked(event -> {
@@ -252,6 +253,8 @@ public class AfficherStockControllers {
                                 stockService.supprimer(selectedStock.getStockID());
                                 // Rafraîchir la liste après la suppression
                                 STOCK_AFF.getItems().remove(selectedStock);
+                                // Mettre à jour le nombre de stocks affichés dans STOCK_DYN_NB après la suppression
+                                STOCK_DYN_NB.setText(String.valueOf(STOCK_AFF.getItems().size()));
                             } catch (SQLException e) {
                                 e.printStackTrace();
                                 // Gérer l'erreur de suppression
@@ -262,6 +265,7 @@ public class AfficherStockControllers {
             }
         });
     }
+
 
     public void STOCK_AFF_BOUTON_MO(javafx.event.ActionEvent actionEvent) {
         Stock selectedStock = STOCK_AFF.getSelectionModel().getSelectedItem();
@@ -277,6 +281,4 @@ public class AfficherStockControllers {
             }
         }
     }
-
-
 }

@@ -8,19 +8,19 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="560.0" prefWidth="701.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.AfficherStockControllers">
+<AnchorPane prefHeight="672.0" prefWidth="1160.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.AfficherStockControllers">
    <children>
-      <Label alignment="CENTER" layoutX="411.0" layoutY="230.0" prefHeight="45.0" prefWidth="147.0" text="Affichage :">
+      <Label alignment="CENTER" layoutX="412.0" layoutY="174.0" prefHeight="45.0" prefWidth="147.0" text="Affichage :">
          <font>
             <Font name="System Italic" size="20.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="353.0" layoutY="150.0" prefHeight="80.0" prefWidth="264.0" text="Gestion Stock :">
+      <Label alignment="CENTER" layoutX="353.0" layoutY="111.0" prefHeight="80.0" prefWidth="264.0" text="Gestion Stock :">
          <font>
             <Font name="System Bold" size="30.0" />
          </font>
       </Label>
-      <VBox layoutX="234.0" layoutY="288.0" prefHeight="270.0" prefWidth="501.0">
+      <VBox layoutX="235.0" layoutY="271.0" prefHeight="270.0" prefWidth="501.0">
          <children>
             <HBox prefHeight="49.0" prefWidth="497.0">
                <children>
@@ -49,18 +49,18 @@
             <ListView fx:id="STOCK_AFF" prefHeight="222.0" prefWidth="499.0" />
          </children>
       </VBox>
-      <Button id="Button" layoutX="748.0" layoutY="368.0" mnemonicParsing="false" onAction="#STOCK_AFF_BOUTON_AJ" prefHeight="55.0" prefWidth="158.0" stylesheets="@css/style.css" text="--&gt; AJOUTER">
+      <Button id="Button" layoutX="748.0" layoutY="303.0" mnemonicParsing="false" onAction="#STOCK_AFF_BOUTON_AJ" prefHeight="55.0" prefWidth="158.0" stylesheets="@css/style.css" text="--&gt; AJOUTER">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
-      <Button id="Button" layoutX="748.0" layoutY="440.0" mnemonicParsing="false" onAction="#STOCK_AFF_BOUTON_MO" prefHeight="55.0" prefWidth="158.0" stylesheets="@css/style.css" text="--&gt; MODIFIER">
+      <Button id="Button" layoutX="748.0" layoutY="379.0" mnemonicParsing="false" onAction="#STOCK_AFF_BOUTON_MO" prefHeight="55.0" prefWidth="158.0" stylesheets="@css/style.css" text="--&gt; MODIFIER">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
-      <TextField fx:id="STOCK_RECH1" alignment="CENTER" layoutX="758.0" layoutY="310.0" prefHeight="31.0" prefWidth="138.0" />
-      <Button id="Button" layoutX="727.0" layoutY="236.0" mnemonicParsing="false" onAction="#STOCK_RECH_BOUTON" prefHeight="55.0" prefWidth="179.0" stylesheets="@css/style.css" text="--&gt; RECHERCHER">
+      <TextField fx:id="STOCK_RECH1" alignment="CENTER" layoutX="758.0" layoutY="240.0" prefHeight="31.0" prefWidth="138.0" />
+      <Button id="Button" layoutX="728.0" layoutY="174.0" mnemonicParsing="false" onAction="#STOCK_RECH_BOUTON" prefHeight="55.0" prefWidth="179.0" stylesheets="@css/style.css" text="--&gt; RECHERCHER">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -194,15 +194,30 @@
             </Button>
          </children>
       </Pane>
-      <Button id="Button" layoutX="729.0" layoutY="173.0" mnemonicParsing="false" onAction="#STOCK_PDF_BOUTON" prefHeight="45.0" prefWidth="176.0" stylesheets="@css/style.css" text="--&gt; PDF" />
-      <Label alignment="CENTER" layoutX="254.0" layoutY="590.0" prefHeight="31.0" prefWidth="86.0" text="TRIER :">
+      <Button id="Button" layoutX="729.0" layoutY="111.0" mnemonicParsing="false" onAction="#STOCK_PDF_BOUTON" prefHeight="45.0" prefWidth="176.0" stylesheets="@css/style.css" text="--&gt; PDF" />
+      <Label alignment="CENTER" layoutX="246.0" layoutY="569.0" prefHeight="31.0" prefWidth="86.0" text="TRIER :">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
       </Label>
-      <Button id="Button" layoutX="557.0" layoutY="582.0" mnemonicParsing="false" onAction="#STOCK_TRIER_DESC_BOUTON" prefHeight="45.0" prefWidth="176.0" stylesheets="@css/style.css" text="--&gt; Trier DESC" />
-      <Button id="Button" layoutX="355.0" layoutY="582.0" mnemonicParsing="false" onAction="#STOCK_TRIER_ASC_BOUTON" prefHeight="45.0" prefWidth="176.0" stylesheets="@css/style.css" text="--&gt; Trier ASC" />
-      <Button id="Button" layoutX="748.0" layoutY="512.0" mnemonicParsing="false" onAction="#STOCK_ANALYSE_BOUTON" prefHeight="55.0" prefWidth="158.0" stylesheets="@css/style.css" text="--&gt; ANALYSE">
+      <Button id="Button" layoutX="549.0" layoutY="561.0" mnemonicParsing="false" onAction="#STOCK_TRIER_DESC_BOUTON" prefHeight="45.0" prefWidth="176.0" stylesheets="@css/style.css" text="--&gt; Trier DESC" />
+      <Button id="Button" layoutX="347.0" layoutY="561.0" mnemonicParsing="false" onAction="#STOCK_TRIER_ASC_BOUTON" prefHeight="45.0" prefWidth="176.0" stylesheets="@css/style.css" text="--&gt; Trier ASC" />
+      <Button id="Button" layoutX="748.0" layoutY="453.0" mnemonicParsing="false" onAction="#STOCK_ANALYSE_BOUTON" prefHeight="55.0" prefWidth="158.0" stylesheets="@css/style.css" text="--&gt; ANALYSE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+      <TextField fx:id="STOCK_DYN_NB" alignment="CENTER" layoutX="576.0" layoutY="240.0" prefHeight="31.0" prefWidth="53.0">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </TextField>
+      <Label layoutX="342.0" layoutY="240.0" prefHeight="31.0" prefWidth="257.0" text="Le nombre de stock est de :">
+         <font>
+            <Font name="System Italic" size="18.0" />
+         </font>
+      </Label>
+      <Button id="Button" layoutX="940.0" layoutY="602.0" mnemonicParsing="false" onAction="#ENTREPOT_STOCK_BOUTON_ENT" prefHeight="55.0" prefWidth="203.0" stylesheets="@css/style.css" text="--&gt; VERS ENTREPOT">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>

@@ -8,14 +8,14 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="558.0" prefWidth="717.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.AfficherEntrepotControllers">
+<AnchorPane prefHeight="667.0" prefWidth="1153.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.AfficherEntrepotControllers">
     <children>
-        <Label alignment="CENTER" layoutX="406.0" layoutY="211.0" prefHeight="45.0" prefWidth="147.0" text="Affichage :">
+        <Label alignment="CENTER" layoutX="406.0" layoutY="178.0" prefHeight="45.0" prefWidth="147.0" text="Affichage :">
             <font>
                 <Font name="System Italic" size="20.0" />
             </font>
         </Label>
-        <Label alignment="CENTER" layoutX="348.0" layoutY="131.0" prefHeight="80.0" prefWidth="264.0" text="Gestion Entrepot :">
+        <Label alignment="CENTER" layoutX="348.0" layoutY="115.0" prefHeight="80.0" prefWidth="264.0" text="Gestion Entrepot :">
             <font>
                 <Font name="System Bold" size="30.0" />
             </font>
@@ -201,12 +201,33 @@
          </children>
       </Pane>
       <Button id="Button" layoutX="734.0" layoutY="131.0" mnemonicParsing="false" onAction="#ENTREPOT_PDF_BOUTON" prefHeight="45.0" prefWidth="176.0" stylesheets="@css/style.css" text="--&gt; PDF" />
-      <Button id="Button" layoutX="345.0" layoutY="572.0" mnemonicParsing="false" onAction="#ENTREPOT_TRIER_ASC_BOUTON" prefHeight="45.0" prefWidth="176.0" stylesheets="@css/style.css" text="--&gt; Trier ASC" />
-      <Button id="Button" layoutX="547.0" layoutY="572.0" mnemonicParsing="false" onAction="#ENTREPOT_TRIER_DESC_BOUTON" prefHeight="45.0" prefWidth="176.0" stylesheets="@css/style.css" text="--&gt; Trier DESC" />
-      <Label alignment="CENTER" layoutX="244.0" layoutY="580.0" prefHeight="31.0" prefWidth="86.0" text="TRIER :">
+      <Button id="Button" layoutX="342.0" layoutY="606.0" mnemonicParsing="false" onAction="#ENTREPOT_TRIER_ASC_BOUTON" prefHeight="45.0" prefWidth="176.0" stylesheets="@css/style.css" text="--&gt; Trier ASC" />
+      <Button id="Button" layoutX="544.0" layoutY="606.0" mnemonicParsing="false" onAction="#ENTREPOT_TRIER_DESC_BOUTON" prefHeight="45.0" prefWidth="176.0" stylesheets="@css/style.css" text="--&gt; Trier DESC" />
+      <Label alignment="CENTER" layoutX="241.0" layoutY="614.0" prefHeight="31.0" prefWidth="86.0" text="TRIER :">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
       </Label>
+      <Button id="Button" layoutX="751.0" layoutY="503.0" mnemonicParsing="false" onAction="#ENTREPOT_ANALYSE_BOUTON" prefHeight="55.0" prefWidth="158.0" stylesheets="@css/style.css" text="--&gt; ANALYSE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+      <Label layoutX="330.0" layoutY="238.0" prefHeight="31.0" prefWidth="257.0" text="Le nombre d'entrepot est de :">
+         <font>
+            <Font name="System Italic" size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="ENTREPOT_DYN_NB" alignment="CENTER" layoutX="564.0" layoutY="238.0" prefHeight="31.0" prefWidth="53.0">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </TextField>
+      <Button id="Button" layoutX="975.0" layoutY="592.0" mnemonicParsing="false" onAction="#ENTREPOT_ENT_BOUTON_STOCK" prefHeight="55.0" prefWidth="158.0" stylesheets="@css/style.css" text="--&gt; VERS STOCK">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+      <Pagination fx:id="ENTREPOT_PAGINATION_BOUTON" layoutX="633.0" layoutY="539.0" prefHeight="3.0" prefWidth="46.0" />
     </children>
 </AnchorPane>
