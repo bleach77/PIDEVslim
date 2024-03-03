@@ -37,6 +37,40 @@ public class AfficherStockControllers {
     private TextField STOCK_DYN_NB;
 
     @FXML
+    void STOCK_STATISTIQUE_BOUTON(ActionEvent actionEvent) {
+        try {
+            List<Stock> stocks = STOCK_AFF.getItems();
+
+            // Calculer les statistiques
+
+            // Exemple: Calculer la moyenne de la quantité
+            double moyenneQuantite = stocks.stream()
+                    .mapToDouble(Stock::getQuantiteS)
+                    .average()
+                    .orElse(0);
+
+            // Exemple: Calculer la moyenne du prix unitaire
+            double moyennePrixUnitaire = stocks.stream()
+                    .mapToDouble(Stock::getPrixUnitaireS)
+                    .average()
+                    .orElse(0);
+
+            // Afficher les statistiques dans une boîte de dialogue
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Statistiques des stocks : ");
+            alert.setHeaderText(null);
+            alert.setContentText(
+                    "Statistiques des stocks : " + "\n\n" +
+                    "   -   Moyenne de la quantité : " + String.format("%.2f", moyenneQuantite) + "\n" +
+                    "   -   Moyenne du prix unitaire : " + String.format("%.2f", moyennePrixUnitaire));
+            alert.showAndWait();
+        } catch (Exception e) {
+            e.printStackTrace();
+            // Gérer les erreurs éventuelles
+        }
+    }
+
+    @FXML
     void STOCK_ANALYSE_BOUTON(ActionEvent event) {
         try {
             List<Stock> stocks = STOCK_AFF.getItems();
@@ -281,4 +315,6 @@ public class AfficherStockControllers {
             }
         }
     }
+
+
 }

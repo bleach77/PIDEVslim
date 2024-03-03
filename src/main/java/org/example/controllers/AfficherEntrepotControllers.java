@@ -3,22 +3,25 @@ package org.example.controllers;
 import com.itextpdf.text.DocumentException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.chart.StackedBarChart;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseButton;
 import javafx.util.Callback;
 import org.example.entites.Entrepot;
+import org.example.entites.StatuE;
 import org.example.services.EntrepotService;
 
-import java.awt.event.ActionEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class AfficherEntrepotControllers {
@@ -36,6 +39,105 @@ public class AfficherEntrepotControllers {
 
     @FXML
     private TextField ENTREPOT_DYN_NB;
+
+    @FXML
+    public void ENTREPOT_STATISTIQUE_BOUTON(ActionEvent actionEvent) {
+        try {
+            List<Entrepot> entrepots = ENTREPOT_AFF.getItems();
+
+            // Calculer les statistiques
+
+            // Exemple: Calculer l'entrepôt le plus utilisé en fonction de la capacité
+            Entrepot plusUtilise = entrepots.stream().max(Comparator.comparing(Entrepot::getNomE)).orElse(null);
+
+
+            // Exemple: Trouver l'entrepôt le moins utilisé en fonction du nombre d'occurrences du nom
+            Map<String, Long> occurrencesParNom = entrepots.stream()
+                    .collect(Collectors.groupingBy(Entrepot::getNomE, Collectors.counting()));
+
+// Trouver le nom avec le moins d'occurrences
+            String nomMoinsUtilise = occurrencesParNom.entrySet().stream()
+                    .min(Comparator.comparing(Map.Entry::getValue))
+                    .map(Map.Entry::getKey)
+                    .orElse(null);
+
+// Trouver l'entrepôt correspondant à ce nom
+            Entrepot moinsUtilise = entrepots.stream()
+                    .filter(entrepot -> entrepot.getNomE().equals(nomMoinsUtilise))
+                    .findFirst()
+                    .orElse(null);
+
+
+            // Exemple: Calculer l'adresse de l'entrepôt le plus utilisé en fonction de la capacité
+            Entrepot adressePlusUtilise = entrepots.stream().max(Comparator.comparing(Entrepot::getAdresseE)).orElse(null);
+
+            // Exemple: Calculer l'adresse de l'entrepôt le moins utilisé en fonction de la capacité
+            // Exemple: Trouver l'adresse de l'entrepôt le moins utilisé en fonction du nombre d'occurrences de l'adresse
+            Map<String, Long> occurrencesParAdresse = entrepots.stream()
+                    .collect(Collectors.groupingBy(Entrepot::getAdresseE, Collectors.counting()));
+
+// Trouver l'adresse avec le moins d'occurrences
+            String adresseMoinsUtilisee = occurrencesParAdresse.entrySet().stream()
+                    .min(Comparator.comparing(Map.Entry::getValue))
+                    .map(Map.Entry::getKey)
+                    .orElse(null);
+
+// Trouver l'entrepôt correspondant à cette adresse
+            Entrepot adresseMoinsUtilise = entrepots.stream()
+                    .filter(entrepot -> entrepot.getAdresseE().equals(adresseMoinsUtilisee))
+                    .findFirst()
+                    .orElse(null);
+
+
+            // Exemple: Calculer la moyenne des capacités
+            double moyenneCapacites = entrepots.stream().mapToInt(Entrepot::getCapaciteE).average().orElse(0);
+            String moyenneCapacitesFormatted;
+            if (moyenneCapacites != 0) {
+                moyenneCapacitesFormatted = String.format("%.2f", moyenneCapacites); // Formater avec deux chiffres après la virgule
+            } else {
+                moyenneCapacitesFormatted = "0.00"; // Si la moyenne est zéro, définir le format à "0.00"
+            }
+
+            // Exemple: Calculer le pourcentage pour chaque statut d'entrepôt
+            long totalEntrepots = entrepots.size();
+            long nbEntrepotsActifs = entrepots.stream().filter(e -> e.getStatutE().equals(StatuE.Actif)).count();
+            long nbEntrepotsInactifs = entrepots.stream().filter(e -> e.getStatutE().equals(StatuE.Inactif)).count();
+            long nbEntrepotsEnMaintenance = entrepots.stream().filter(e -> e.getStatutE().equals(StatuE.En_maintenance)).count();
+            long nbEntrepotsComplet = entrepots.stream().filter(e -> e.getStatutE().equals(StatuE.Complet)).count();
+
+            // Formater les pourcentages avec deux chiffres après la virgule
+            String pourcentageActifsFormatted = String.format("%.2f", (double) nbEntrepotsActifs / totalEntrepots * 100);
+            String pourcentageInactifsFormatted = String.format("%.2f", (double) nbEntrepotsInactifs / totalEntrepots * 100);
+            String pourcentageEnMaintenanceFormatted = String.format("%.2f", (double) nbEntrepotsEnMaintenance / totalEntrepots * 100);
+            String pourcentageCompletFormatted = String.format("%.2f", (double) nbEntrepotsComplet / totalEntrepots * 100);
+
+            // Afficher les statistiques dans une boîte de dialogue
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Statistiques des entrepôts");
+            alert.setHeaderText(null);
+            alert.setContentText(
+                    "Statistiques des entrepôts : " + "\n\n" +
+                    "   -   Entrepôt le plus utilisé: " + plusUtilise.getNomE() + "\n" +
+                    "   -   Entrepôt le moins utilisé: " + moinsUtilise.getNomE() + "\n\n" +
+
+                    "   -   Adresse de l'entrepôt le plus utilisé: " + adressePlusUtilise.getAdresseE() + "\n" +
+                    "   -   Adresse de l'entrepôt le moins utilisé: " + adresseMoinsUtilise.getAdresseE() + "\n\n" +
+
+                    "   -   Moyenne des capacités: " + moyenneCapacitesFormatted + "\n\n" +
+
+                    "   -   Pourcentage d'entrepôts actifs: " + pourcentageActifsFormatted + "%\n" +
+                    "   -   Pourcentage d'entrepôts inactifs: " + pourcentageInactifsFormatted + "%\n" +
+                    "   -   Pourcentage d'entrepôts en maintenance: " + pourcentageEnMaintenanceFormatted + "%\n" +
+                    "   -   Pourcentage d'entrepôts complets: " + pourcentageCompletFormatted + "%");
+
+            alert.showAndWait();
+        } catch (Exception e) {
+            e.printStackTrace();
+            // Gérer les erreurs éventuelles
+        }
+    }
+
+
 
     @FXML
     public void ENTREPOT_ENT_BOUTON_STOCK(javafx.event.ActionEvent actionEvent) {
@@ -284,6 +386,7 @@ public class AfficherEntrepotControllers {
             // Gérer les erreurs de récupération des données de la base de données
         }
     }
+
 
 
 }

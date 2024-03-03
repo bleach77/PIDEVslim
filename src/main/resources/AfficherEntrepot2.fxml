@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.chart.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
@@ -8,7 +9,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="667.0" prefWidth="1153.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.AfficherEntrepotControllers">
+<AnchorPane prefHeight="670.0" prefWidth="1311.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.AfficherEntrepotControllers">
     <children>
         <Label alignment="CENTER" layoutX="406.0" layoutY="178.0" prefHeight="45.0" prefWidth="147.0" text="Affichage :">
             <font>
@@ -54,7 +55,7 @@
                 <Font name="System Bold" size="18.0" />
             </font>
         </Button>
-        <Button id="Button" layoutX="753.0" layoutY="431.0" mnemonicParsing="false" onAction="#ENTREPOT_AFF_BOUTON_MO" prefHeight="55.0" prefWidth="158.0" stylesheets="@css/style.css" text="--&gt; MODIFIER">
+        <Button id="Button" layoutX="753.0" layoutY="429.0" mnemonicParsing="false" onAction="#ENTREPOT_AFF_BOUTON_MO" prefHeight="55.0" prefWidth="158.0" stylesheets="@css/style.css" text="--&gt; MODIFIER">
             <font>
                 <Font name="System Bold" size="18.0" />
             </font>
@@ -208,7 +209,7 @@
             <Font name="System Bold Italic" size="15.0" />
          </font>
       </Label>
-      <Button id="Button" layoutX="751.0" layoutY="503.0" mnemonicParsing="false" onAction="#ENTREPOT_ANALYSE_BOUTON" prefHeight="55.0" prefWidth="158.0" stylesheets="@css/style.css" text="--&gt; ANALYSE">
+      <Button id="Button" layoutX="751.0" layoutY="498.0" mnemonicParsing="false" onAction="#ENTREPOT_ANALYSE_BOUTON" prefHeight="55.0" prefWidth="158.0" stylesheets="@css/style.css" text="--&gt; ANALYSE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -223,7 +224,12 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </TextField>
-      <Button id="Button" layoutX="975.0" layoutY="592.0" mnemonicParsing="false" onAction="#ENTREPOT_ENT_BOUTON_STOCK" prefHeight="55.0" prefWidth="158.0" stylesheets="@css/style.css" text="--&gt; VERS STOCK">
+      <Button id="Button" layoutX="987.0" layoutY="601.0" mnemonicParsing="false" onAction="#ENTREPOT_ENT_BOUTON_STOCK" prefHeight="55.0" prefWidth="158.0" stylesheets="@css/style.css" text="--&gt; VERS STOCK">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+      <Button id="Button" layoutX="1045.0" layoutY="457.0" mnemonicParsing="false" onAction="#ENTREPOT_STATISTIQUE_BOUTON" prefHeight="55.0" prefWidth="176.0" stylesheets="@css/style.css" text="--&gt; STATISTIQUE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
