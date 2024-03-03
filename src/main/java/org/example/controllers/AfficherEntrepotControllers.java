@@ -18,10 +18,7 @@ import org.example.services.EntrepotService;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class AfficherEntrepotControllers {
@@ -388,5 +385,75 @@ public class AfficherEntrepotControllers {
     }
 
 
+    @FXML
+    public void ENTREPOT_TRAVAUX_BOUTON(ActionEvent actionEvent) {
+        try {
+            // Récupérer tous les entrepôts actuellement affichés dans le ListView
+            List<Entrepot> entrepotsAffiches = new ArrayList<>(ENTREPOT_AFF.getItems());
+
+            // Mettre à jour le statut de tous les entrepôts à "En_maintenance"
+            entrepotsAffiches.forEach(entrepot -> entrepot.setStatutE(StatuE.En_maintenance));
+
+            // Mettre à jour les entrepôts dans la base de données
+            for (Entrepot entrepot : entrepotsAffiches) {
+                entrepotService.modifier(entrepot);
+            }
+
+            // Mettre à jour l'affichage dans le ListView
+            ENTREPOT_AFF.getItems().clear();
+            ENTREPOT_AFF.getItems().addAll(entrepotsAffiches);
+
+            // Afficher un message de confirmation
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Mise en maintenance des entrepôts");
+            alert.setHeaderText(null);
+            alert.setContentText("Tous les entrepôts affichés ont été mis en maintenance avec succès !");
+            alert.showAndWait();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Gérer les erreurs éventuelles
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText(null);
+            alert.setContentText("Une erreur s'est produite lors de la mise en maintenance des entrepôts !");
+            alert.showAndWait();
+        }
+    }
+
+
+    @FXML
+    public void ENTREPOT_XX_TRAVAUX_BOUTON(ActionEvent actionEvent) {
+        try {
+            // Récupérer tous les entrepôts actuellement affichés dans le ListView
+            List<Entrepot> entrepotsAffiches = new ArrayList<>(ENTREPOT_AFF.getItems());
+
+            // Mettre à jour le statut de tous les entrepôts à "Actif"
+            entrepotsAffiches.forEach(entrepot -> entrepot.setStatutE(StatuE.Actif));
+
+            // Mettre à jour les entrepôts dans la base de données
+            for (Entrepot entrepot : entrepotsAffiches) {
+                entrepotService.modifier(entrepot);
+            }
+
+            // Mettre à jour l'affichage dans le ListView
+            ENTREPOT_AFF.getItems().clear();
+            ENTREPOT_AFF.getItems().addAll(entrepotsAffiches);
+
+            // Afficher un message de confirmation
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Mise à jour du statut des entrepôts");
+            alert.setHeaderText(null);
+            alert.setContentText("Tous les entrepôts affichés ont été mis au statut 'Actif' avec succès !");
+            alert.showAndWait();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Gérer les erreurs éventuelles
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText(null);
+            alert.setContentText("Une erreur s'est produite lors de la mise à jour du statut des entrepôts !");
+            alert.showAndWait();
+        }
+    }
 
 }

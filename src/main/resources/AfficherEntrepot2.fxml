@@ -9,7 +9,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="670.0" prefWidth="1311.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.AfficherEntrepotControllers">
+<AnchorPane prefHeight="745.0" prefWidth="1160.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.AfficherEntrepotControllers">
     <children>
         <Label alignment="CENTER" layoutX="406.0" layoutY="178.0" prefHeight="45.0" prefWidth="147.0" text="Affichage :">
             <font>
@@ -202,9 +202,9 @@
          </children>
       </Pane>
       <Button id="Button" layoutX="734.0" layoutY="131.0" mnemonicParsing="false" onAction="#ENTREPOT_PDF_BOUTON" prefHeight="45.0" prefWidth="176.0" stylesheets="@css/style.css" text="--&gt; PDF" />
-      <Button id="Button" layoutX="342.0" layoutY="569.0" mnemonicParsing="false" onAction="#ENTREPOT_TRIER_ASC_BOUTON" prefHeight="45.0" prefWidth="176.0" stylesheets="@css/style.css" text="--&gt; Trier ASC" />
-      <Button id="Button" layoutX="544.0" layoutY="569.0" mnemonicParsing="false" onAction="#ENTREPOT_TRIER_DESC_BOUTON" prefHeight="45.0" prefWidth="176.0" stylesheets="@css/style.css" text="--&gt; Trier DESC" />
-      <Label alignment="CENTER" layoutX="241.0" layoutY="577.0" prefHeight="31.0" prefWidth="86.0" text="TRIER :">
+      <Button id="Button" layoutX="341.0" layoutY="553.0" mnemonicParsing="false" onAction="#ENTREPOT_TRIER_ASC_BOUTON" prefHeight="45.0" prefWidth="176.0" stylesheets="@css/style.css" text="--&gt; Trier ASC" />
+      <Button id="Button" layoutX="543.0" layoutY="553.0" mnemonicParsing="false" onAction="#ENTREPOT_TRIER_DESC_BOUTON" prefHeight="45.0" prefWidth="176.0" stylesheets="@css/style.css" text="--&gt; Trier DESC" />
+      <Label alignment="CENTER" layoutX="240.0" layoutY="561.0" prefHeight="31.0" prefWidth="86.0" text="TRIER :">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
@@ -229,10 +229,17 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
-      <Button id="Button" layoutX="1045.0" layoutY="457.0" mnemonicParsing="false" onAction="#ENTREPOT_STATISTIQUE_BOUTON" prefHeight="55.0" prefWidth="176.0" stylesheets="@css/style.css" text="--&gt; STATISTIQUE">
+      <Button id="Button" layoutX="744.0" layoutY="565.0" mnemonicParsing="false" onAction="#ENTREPOT_STATISTIQUE_BOUTON" prefHeight="55.0" prefWidth="176.0" stylesheets="@css/style.css" text="--&gt; STATISTIQUE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
+      <Label layoutX="291.0" layoutY="660.0" prefHeight="48.0" prefWidth="158.0" text="Reconfiguration : ">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Button id="Button" layoutX="449.0" layoutY="637.0" mnemonicParsing="false" onAction="#ENTREPOT_TRAVAUX_BOUTON" prefHeight="47.0" prefWidth="158.0" stylesheets="@css/style.css" text="TRAVAUX" />
+      <Button id="Button" layoutX="449.0" layoutY="691.0" mnemonicParsing="false" onAction="#ENTREPOT_XX_TRAVAUX_BOUTON" prefHeight="47.0" prefWidth="158.0" stylesheets="@css/style.css" text="XX TRAVAUX" />
     </children>
 </AnchorPane>

@@ -217,12 +217,12 @@
             <Font name="System Italic" size="18.0" />
          </font>
       </Label>
-      <Button id="Button" layoutX="940.0" layoutY="602.0" mnemonicParsing="false" onAction="#ENTREPOT_STOCK_BOUTON_ENT" prefHeight="55.0" prefWidth="203.0" stylesheets="@css/style.css" text="--&gt; VERS ENTREPOT">
+      <Button id="Button" layoutX="952.0" layoutY="611.0" mnemonicParsing="false" onAction="#ENTREPOT_STOCK_BOUTON_ENT" prefHeight="55.0" prefWidth="203.0" stylesheets="@css/style.css" text="--&gt; VERS ENTREPOT">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
-      <Button id="Button" layoutX="1055.0" layoutY="467.0" mnemonicParsing="false" onAction="#STOCK_STATISTIQUE_BOUTON" prefHeight="55.0" prefWidth="176.0" stylesheets="@css/style.css" text="--&gt; STATISTIQUE">
+      <Button id="Button" layoutX="748.0" layoutY="530.0" mnemonicParsing="false" onAction="#STOCK_STATISTIQUE_BOUTON" prefHeight="55.0" prefWidth="176.0" stylesheets="@css/style.css" text="--&gt; STATISTIQUE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
