@@ -8,6 +8,8 @@ import org.example.entites.Entrepot;
 import org.example.entites.StatuE;
 import org.example.services.EntrepotService;
 import org.example.services.Sendmail;
+import org.example.services.Slacknotif;
+
 //import org.example.services.Slacknotif;
 
 import java.io.IOException;
@@ -111,8 +113,8 @@ public class AjouterEntrepotControllers {
             // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
-//            Slacknotif.sendSlackNotification("Entrepot Ajouté !!!!!! ");
-//
+            Slacknotif.sendSlackNotification("Entrepot Ajouté !!!!!! ");
+
 
 
 
